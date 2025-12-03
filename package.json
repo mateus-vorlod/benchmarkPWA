@@ -5,8 +5,9 @@
     "benchmark": "node gerarBenchmark.js"
   },
   "dependencies": {
+    "chrome-launcher": "^1.2.1",
     "fs-extra": "^11.1.1",
-    "lighthouse": "^11.0.0",
-    "mongodb": "^6.19.0"
+    "lighthouse": "^13.0.1",
+    "mongodb": "^6.21.0"
   }
 }
