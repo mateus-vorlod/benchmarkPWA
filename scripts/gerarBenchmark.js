@@ -8,13 +8,24 @@ const chromeLauncher = require('chrome-launcher');
 const { MongoClient } = require('mongodb');
 
 // === Configurações MongoDB ===
-const MONGO_URI = 'mongodb://localhost:27017';
+//const MONGO_URI = 'mongodb://localhost:27017//bpwa?authSource=bpwa';
+const MONGO_URI = 'mongodb://localhost/:27017/';
 const DB_NAME = 'benchmark';
 const COLLECTION_NAME = 'relatoriosPWA';
 
 async function gerarRelatorioComMelhorias(url) {
 
-  const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
+  // const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
+  const chrome = await chromeLauncher.launch({
+    chromePath: process.env.CHROME_PATH, // vem do Dockerfile
+    chromeFlags: [
+      '--headless',
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+    ],
+  });
+
   const options = {
     logLevel: 'info',
     output: 'json',

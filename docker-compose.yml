@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  n8n:
+    build: .
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./data:/home/node/.n8n
+      - ./scripts:/home/node/scripts
+    environment:
+      - TZ=America/Sao_Paulo
+      - CHROME_PATH=/usr/bin/chromium-browser
+    restart: unless-stopped
