@@ -56,13 +56,13 @@ async function gerarRelatorioComMelhorias(url) {
     cumulativeLayoutShift: audits['cumulative-layout-shift']?.numericValue ?? null,
   };
 
-  // Gera lista de melhorias: identifica auditorias com score < 1 (falhas ou avisos)
+  // Gera lista de melhorias: identifica auditorias com score < 0.6 (falhas ou avisos)
   const improvementPoints = [];
   for (const [auditId, audit] of Object.entries(audits)) {
     const score = audit.score;
     const mode = audit.scoreDisplayMode;
-    // consideramos auditorias numéricas ou binarias (falhas) com score < 1 como pontos de melhoria
-    if (score !== null && score < 1 && (mode === 'numeric' || mode === 'binary')) {
+    // consideramos auditorias numéricas ou binarias (falhas) com score < 0.6 como pontos de melhoria
+    if (score !== null && score < 0.6 && (mode === 'numeric' || mode === 'binary')) {
       improvementPoints.push({
         id: auditId,
         title: audit.title,
